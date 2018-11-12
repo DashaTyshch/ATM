@@ -1,0 +1,17 @@
+D:\KMA\3\1\MOOP\project\ATM\ATM\bin\Debug\ATM.exe.config
+D:\KMA\3\1\MOOP\project\ATM\ATM\bin\Debug\ATM.exe
+D:\KMA\3\1\MOOP\project\ATM\ATM\bin\Debug\ATM.pdb
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.csprojAssemblyReference.cache
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\MainWindow.g.cs
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\Pages\LoginPage.g.cs
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\App.g.cs
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM_MarkupCompile.cache
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM_MarkupCompile.lref
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\MainWindow.baml
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\Pages\LoginPage.baml
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.g.resources
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.Properties.Resources.resources
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.csproj.GenerateResource.cache
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.csproj.CoreCompileInputs.cache
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.exe
+D:\KMA\3\1\MOOP\project\ATM\ATM\obj\Debug\ATM.pdb
