@@ -15,21 +15,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ATM.DataModels;
-using ATM.Pages;
 
-namespace ATM
+namespace ATM.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для LoginPage.xaml
+    /// Interaction logic for SignUp.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class SignUp : Page
     {
-        public LoginPage()
+        public SignUp()
         {
             InitializeComponent();
         }
 
-        private void ButtonLogin_Click(object sender, RoutedEventArgs e)
+        private void ButtonSignUp_Click(object sender, RoutedEventArgs e)
         {
             HttpClient client = new HttpClient();
 
@@ -39,22 +38,23 @@ namespace ATM
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var userCredentials = new Credentials
+            var userInfo = new UserUpdDto
             {
-                Login = LoginTextBox.Text,
+                Name = NameTextBox.Text,
+                Surname = SurnameTextBox.Text,
+                PhoneNumber = LoginTextBox.Text,
                 Password = PasswordTextBox.Password
             };
 
-            var response = client.PostAsJsonAsync("api/auth/signin", userCredentials).Result;
+            var response = client.PostAsJsonAsync("api/auth/signup", userInfo).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                MessageBox.Show("User Logged in");
+                MessageBox.Show("User Signed up");
+                NameTextBox.Text = "";
+                SurnameTextBox.Text = "";
                 LoginTextBox.Text = "";
                 PasswordTextBox.Password = "";
-
-                // TODO:: and where futher?
-                // To next page
             }
             else
             {

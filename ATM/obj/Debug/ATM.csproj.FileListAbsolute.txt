@@ -44,3 +44,5 @@ D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.WebRequest.dl
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\Newtonsoft.Json.xml
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.xml
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.WebRequest.xml
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\SignUp.g.cs
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\SignUp.baml
