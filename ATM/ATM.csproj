@@ -80,7 +80,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
+    <Compile Include="DataModels\Account.cs" />
     <Compile Include="DataModels\Credentials.cs" />
+    <Compile Include="DataModels\UserGetDto.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverters.cs" />

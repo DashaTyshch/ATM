@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ATM.DataModels;
 
 namespace ATM
 {
@@ -30,21 +31,19 @@ namespace ATM
         private void GetData()
         {
             HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("http://localhost:56851/");
             client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
 
             // Add an Accept header for JSON format.
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.GetAsync("api/auth/signin").Result; // auth/signin ?????/
+            HttpResponseMessage response = client.GetAsync("api/auth/signin").Result; 
 
             if (response.IsSuccessStatusCode)
             {
                var user = response.Content.ReadAsAsync<IEnumerable<DataModels.Credentials>>().Result;
                 // TODO:: and where futher?
-
-               // usergrid.ItemsSource = users;
+                // To next page
 
             }
             else
@@ -58,18 +57,17 @@ namespace ATM
         {
             HttpClient client = new HttpClient();
 
-            //client.BaseAddress = new Uri("http://localhost:56851/");
-
             client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
 
             // Add an Accept header for JSON format.
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var userCredentials = new DataModels.Credentials();
-
-            userCredentials.Login = LoginTextBox.Text;
-            userCredentials.Password = PasswordTextBox.Password;
+            var userCredentials = new Credentials
+            {
+                Login = LoginTextBox.Text,
+                Password = PasswordTextBox.Password
+            };
 
             var response = client.PostAsJsonAsync("api/auth/signin", userCredentials).Result;
 
@@ -77,8 +75,7 @@ namespace ATM
             {
                 MessageBox.Show("User Logged in");
                 LoginTextBox.Text = "";
-                PasswordTextBox.Password = ""; // ??????????
-                GetData();
+                PasswordTextBox.Password = "";
             }
             else
             {
