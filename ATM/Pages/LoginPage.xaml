@@ -20,11 +20,11 @@
                             <TextBlock Text="Реєстрація" FontSize="40" Foreground="CadetBlue"/>
                             <TextBlock Text="Мобільний банкінг ТКТ" FontSize="20" Foreground="Gray" Margin="0 0 0 20"/>
                             <!-- Login -->
-                            <TextBox Tag="Логін"/>
+                            <TextBox Name="LoginTextBox" Tag="Логін"/>
                             <!-- Password -->
-                            <PasswordBox Tag="Пароль" Margin="0 0 0 20"/>
+                            <PasswordBox Name="PasswordTextBox" Tag="Пароль" Margin="0 0 0 20"/>
                             <Button Content="Ввійти" HorizontalAlignment="Center"
-                                    FontSize="26"/>
+                                    FontSize="26" Click="ButtonLogin_Click"/>
                         </StackPanel>
 
                     </Border>
