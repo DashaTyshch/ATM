@@ -6,15 +6,21 @@ using System.Windows.Markup;
 namespace ATM
 {
     public abstract class BaseValueConverters<T> : MarkupExtension, IValueConverter
+        where T : class, new()
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        #region Private Members 
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+
+        private static T mConverter = null;
+
+        #endregion
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            throw new NotImplementedException();
+            return mConverter ?? (mConverter = new T());
         }
+        public abstract object Convert(object value, Type targetType, object parameter, CultureInfo culture);
+
+        public abstract object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture);
     }
 }

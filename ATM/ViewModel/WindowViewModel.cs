@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace ATM
 {
-    class WindowViewModel : ViewModel.BaseViewModel
+    class WindowViewModel : BaseViewModel
     {
         #region Private Member
 

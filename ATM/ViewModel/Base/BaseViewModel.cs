@@ -1,7 +1,7 @@
 ﻿//using PropertyChanged;
 using System.ComponentModel;
 
-namespace ATM.ViewModel
+namespace ATM
 {
     //[ImplementPropertyChanged]
     class BaseViewModel : INotifyPropertyChanged
