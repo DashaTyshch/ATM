@@ -45,6 +45,24 @@ namespace ATM.Services
             SessionId = resp.Content.ReadAsAsync<string>().Result;
             return true;
         }
+
+        public bool Register(string name, string surname, string login, string password)
+        {
+            var user = new UserUpdDto
+            {
+                Name = name,
+                PhoneNumber = login,
+                Password = password,
+                Surname = surname
+            };
+
+            var resp = Client.PostAsJsonAsync("api/auth/signup", user).Result;
+            if (!resp.IsSuccessStatusCode)
+                return false;
+            SessionId = resp.Content.ReadAsAsync<string>().Result;
+            return true;
+        }
+
         public UserGetDto CurrentUser()
         {
             if (SessionId == null)
