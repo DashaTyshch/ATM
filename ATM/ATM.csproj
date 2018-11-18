@@ -81,12 +81,17 @@
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="DataModels\Account.cs" />
+    <Compile Include="DataModels\CreateMobileTransferDto.cs" />
     <Compile Include="DataModels\Credentials.cs" />
+    <Compile Include="DataModels\TransferCreateDto.cs" />
     <Compile Include="DataModels\UserGetDto.cs" />
     <Compile Include="DataModels\UserUpdDto.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MobileTransferPage.xaml.cs">
+      <DependentUpon>MobileTransferPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
@@ -115,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MobileTransferPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

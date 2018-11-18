@@ -48,3 +48,5 @@ D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\SignUp.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\SignUp.baml
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MainPage.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MainPage.baml
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MobileTransferPage.g.cs
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MobileTransferPage.baml

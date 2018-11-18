@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ATM.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +26,22 @@ namespace ATM.Pages
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void MobileTransferButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO:: go to mobile transfer page
+            NavigationService navService = NavigationService.GetNavigationService(this);
+            navService.Navigate(new System.Uri("Pages/MobileTransferPage.xaml", UriKind.RelativeOrAbsolute));
+
+        }
+        private void TransferButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO:: go to transfer page
+        }
+        private void CharityButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
