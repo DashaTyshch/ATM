@@ -25,7 +25,6 @@ D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\ATM.csprojResolveAssemblyRefe
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\MainWindow.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\LoginPage.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\App.g.cs
-D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\ATM_MarkupCompile.cache
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\ATM_MarkupCompile.lref
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\MainWindow.baml
@@ -40,13 +39,16 @@ D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.dll
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.Extensions.dll
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.Formatting.dll
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.Primitives.dll
-D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.WebRequest.dll
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\Newtonsoft.Json.xml
-D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.xml
-D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Net.Http.WebRequest.xml
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\SignUp.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\SignUp.baml
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MainPage.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MainPage.baml
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MobileTransferPage.g.cs
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\MobileTransferPage.baml
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Security.Cryptography.Algorithms.dll
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Security.Cryptography.Encoding.dll
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Security.Cryptography.Primitives.dll
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\TransferPage.g.cs
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\TransferPage.baml

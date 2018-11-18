@@ -1,0 +1,41 @@
+﻿<Page x:Class="ATM.Pages.TransferPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ATM.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TransferPage">
+
+    <Border Background="DimGray">
+        <Grid>
+            <!-- Content Scroll -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                            TextBlock.TextAlignment="Center" Width="350">
+                    <Border Background="Snow" CornerRadius="10"
+                            Padding="15" Margin="0 0 0 0">
+                        <StackPanel>
+                            <TextBlock Text="Transfer" FontSize="40" Foreground="CadetBlue"/>
+                            <!-- Card -->
+                            <Label Content="Choose card" FontSize="14" Foreground="Gray"/>
+                            <ComboBox Name="CardComboBox" Tag="CardComboBox"/>
+                            <!-- Card number -->
+                            <Label Content="Enter card number" FontSize="14" Foreground="Gray"/>
+                            <TextBox Name="CardTextBox" Tag="Card"/>
+                            <!--Amount -->
+                            <Label Content="Amount" FontSize="14" Foreground="Gray"/>
+                            <TextBox Name="AmountTextBox" Tag="Amount"/>
+
+                            <Button Content="Send" HorizontalAlignment="Center"
+                                    FontSize="24" Margin="0 15 0 0" Padding="10" Click="SendTransferButton_Click"/>
+                        </StackPanel>
+
+                    </Border>
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Page>

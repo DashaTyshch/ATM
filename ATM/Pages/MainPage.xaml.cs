@@ -38,6 +38,8 @@ namespace ATM.Pages
         private void TransferButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO:: go to transfer page
+            NavigationService navService = NavigationService.GetNavigationService(this);
+            navService.Navigate(new System.Uri("Pages/TransferPage.xaml", UriKind.RelativeOrAbsolute));
         }
         private void CharityButton_Click(object sender, RoutedEventArgs e)
         {
