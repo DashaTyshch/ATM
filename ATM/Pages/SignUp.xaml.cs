@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ATM.DataModels;
+using ATM.Services;
 
 namespace ATM.Pages
 {
@@ -30,36 +31,44 @@ namespace ATM.Pages
 
         private void ButtonSignUp_Click(object sender, RoutedEventArgs e)
         {
-            HttpClient client = new HttpClient();
-
-            client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var userInfo = new UserUpdDto
+            if (NameTextBox.Text == "" || SurnameTextBox.Text == "" 
+                || LoginTextBox.Text == "" || PasswordTextBox.Password == "")
             {
-                Name = NameTextBox.Text,
-                Surname = SurnameTextBox.Text,
-                PhoneNumber = LoginTextBox.Text,
-                Password = PasswordTextBox.Password
-            };
-
-            var response = client.PostAsJsonAsync("api/auth/signup", userInfo).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("User Signed up");
-                NameTextBox.Text = "";
-                SurnameTextBox.Text = "";
-                LoginTextBox.Text = "";
-                PasswordTextBox.Password = "";
+                MessageBox.Show("Заповніть всі поля!", "Помилка реєстрації");
             }
             else
             {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                var userInfo = new UserUpdDto
+                {
+                    Name = NameTextBox.Text,
+                    Surname = SurnameTextBox.Text,
+                    PhoneNumber = LoginTextBox.Text,
+                    Password = PasswordTextBox.Password
+                };
+
+                if (BankingApiClient.GetInstance().Register(userInfo.Name, userInfo.Surname, userInfo.PhoneNumber, userInfo.Password))
+                {
+                    NameTextBox.Text = "";
+                    SurnameTextBox.Text = "";
+                    LoginTextBox.Text = "";
+                    PasswordTextBox.Password = "";
+
+                    // To next page
+                    MainPage MainP = new MainPage();
+                    this.NavigationService.Navigate(MainP);
+                }
+                else
+                {
+                    PasswordTextBox.Password = "";
+                    MessageBox.Show("Вказаний номер телефону вже зареєстрований!", "Помилка реєстрації");
+                }
             }
+        }
+
+        private void ButtonToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            LoginPage LogP = new LoginPage();
+            this.NavigationService.Navigate(LogP);
         }
     }
 }

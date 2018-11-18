@@ -16,7 +16,7 @@
                             TextBlock.TextAlignment="Center">
                     <Border Background="Snow" CornerRadius="10"
                             Padding="15" Margin="0 0 0 0">
-                        <StackPanel>                       
+                        <StackPanel>
                             <TextBlock Text="Реєстрація" FontSize="40" Foreground="CadetBlue"/>
                             <TextBlock Text="Мобільний банкінг ТКТ" FontSize="20" Foreground="Gray" Margin="0 0 0 20"/>
                             <!-- Name -->
@@ -34,10 +34,9 @@
                             <Button Content="Заєструватися" HorizontalAlignment="Center"
                                     FontSize="24" Click="ButtonSignUp_Click"/>
                         </StackPanel>
-
                     </Border>
+                    <Button Content="Вже зареєстровані? Ввійти!" HorizontalAlignment="Center" Margin="0 15 0 0" Click="ButtonToLogin_Click"/>
                 </StackPanel>
-
             </ScrollViewer>
         </Grid>
     </Border>

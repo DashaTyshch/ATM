@@ -49,5 +49,11 @@ namespace ATM
                 }
             }
         }
+
+        private void ButtonToSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            SignUp SUP = new SignUp();
+            this.NavigationService.Navigate(SUP);
+        }
     }
 }

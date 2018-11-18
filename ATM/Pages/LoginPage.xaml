@@ -27,7 +27,7 @@
                                     FontSize="26" Click="ButtonLogin_Click"/>
                         </StackPanel>
                     </Border>
-                    <Button Content="Перший раз тут? Зареєструватися!" HorizontalAlignment="Center" Margin="0 15 0 0"/>
+                    <Button Content="Перший раз тут? Зареєструватися!" HorizontalAlignment="Center" Margin="0 15 0 0" Click="ButtonToSignUp_Click"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

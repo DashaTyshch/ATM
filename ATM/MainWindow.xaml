@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ATM"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="TKT" Height="450" Width="800"
+        Title="TKT" Height="550" Width="800"
         Name="MainW">
     <Grid>
         <Frame x:Name="MainFrame"></Frame>
