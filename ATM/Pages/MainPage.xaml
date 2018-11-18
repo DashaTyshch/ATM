@@ -37,14 +37,40 @@
                         <Button Content="Test2" Height="45"/>
                     </StackPanel>
                     
-
-
                 </Grid>                
             </Border>
             
             <!--Main part background-->
             <Border Grid.Column="2">
-                
+                <!--Content-->
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Top card menu bar-->
+                    <StackPanel Height="50" >
+                        <TextBlock Text="Cards menu" FontSize="20" Foreground="WhiteSmoke" 
+                                   HorizontalAlignment="Center" Padding="10 10 10 10"/>
+                    </StackPanel>
+
+                    <!--Cards-->
+                    <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <Button Content="Card 1" Height="45" FontSize="20"/>
+                        <Button Content="Card 2" Height="45" FontSize="20"/>
+                    </StackPanel>
+
+                    <!--Cards functions-->
+                    <StackPanel Grid.Row="2" Height="70" Orientation="Horizontal">
+                        <Button Content="Mobile Tansfer" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0"/>
+                        <Button Content="Transfer" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0"/>
+                        <Button Content="Charity" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0"/>
+                    </StackPanel>
+
+                </Grid>
             </Border>
         </Grid>
     </Border>
