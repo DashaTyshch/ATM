@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATM.DataModels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +19,10 @@ namespace ATM
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new WindowViewModel(this);
+
+            LoginPage LogP = new LoginPage();
+            MainFrame.NavigationService.Navigate(LogP);
+            //this.DataContext = new WindowViewModel(this);
         }
     }
 }

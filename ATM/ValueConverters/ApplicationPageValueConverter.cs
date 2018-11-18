@@ -12,6 +12,8 @@ namespace ATM
             {
                 case ApplicationPage.Login:
                     return new LoginPage();
+                case ApplicationPage.MainP:
+                    return new Pages.MainPage();
                 default:
                     Debugger.Break();
                     return null;

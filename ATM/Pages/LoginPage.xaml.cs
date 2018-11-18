@@ -19,9 +19,6 @@ using ATM.Pages;
 
 namespace ATM
 {
-    /// <summary>
-    /// Логика взаимодействия для LoginPage.xaml
-    /// </summary>
     public partial class LoginPage : Page
     {
         public LoginPage()
@@ -31,34 +28,40 @@ namespace ATM
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            HttpClient client = new HttpClient();
-
-            client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var userCredentials = new Credentials
+            if (LoginTextBox.Text == "" || PasswordTextBox.Password == "")
             {
-                Login = LoginTextBox.Text,
-                Password = PasswordTextBox.Password
-            };
-
-            var response = client.PostAsJsonAsync("api/auth/signin", userCredentials).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("User Logged in");
-                LoginTextBox.Text = "";
-                PasswordTextBox.Password = "";
-
-                // TODO:: and where futher?
-                // To next page
+                MessageBox.Show("Заповніть всі поля!", "Помилка входу");
             }
             else
             {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                //дані, які ввів користувач
+                var userCredentials = new Credentials
+                {
+                    Login = LoginTextBox.Text,
+                    Password = PasswordTextBox.Password
+                };
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
+
+                // Add an Accept header for JSON format.
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = client.PostAsJsonAsync("api/auth/signin", userCredentials).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    LoginTextBox.Text = "";
+                    PasswordTextBox.Password = "";
+
+                    // To next page
+                    MainPage MainP = new MainPage();
+                    this.NavigationService.Navigate(MainP);
+                } else {
+                    PasswordTextBox.Password = "";
+                    MessageBox.Show("Ви ввели неправильний логін або пароль!", "Помилка входу");
+                }
             }
         }
     }

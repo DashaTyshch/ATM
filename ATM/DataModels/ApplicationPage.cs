@@ -7,5 +7,6 @@
     {
         // initial page
         Login = 0,
+        MainP = 1,
     }
 }
