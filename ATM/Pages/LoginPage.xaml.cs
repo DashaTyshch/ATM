@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ATM.DataModels;
 using ATM.Pages;
+using ATM.Services;
 
 namespace ATM
 {
@@ -34,23 +35,7 @@ namespace ATM
             }
             else
             {
-                //дані, які ввів користувач
-                var userCredentials = new Credentials
-                {
-                    Login = LoginTextBox.Text,
-                    Password = PasswordTextBox.Password
-                };
-
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
-
-                // Add an Accept header for JSON format.
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.PostAsJsonAsync("api/auth/signin", userCredentials).Result;
-
-                if (response.IsSuccessStatusCode)
+                if (BankingApiClient.GetInstance().Login(LoginTextBox.Text, PasswordTextBox.Password))
                 {
                     LoginTextBox.Text = "";
                     PasswordTextBox.Password = "";
