@@ -72,5 +72,9 @@ namespace ATM.Services
                 return null;
             return resp.Content.ReadAsAsync<UserGetDto>().Result;
         }
+        public void Reset()
+        {
+            SessionId = null;
+        }
     }
 }

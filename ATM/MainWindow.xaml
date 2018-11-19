@@ -9,6 +9,6 @@
         Title="TKT" Height="550" Width="800"
         Name="MainW">
     <Grid>
-        <Frame x:Name="MainFrame"></Frame>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>
