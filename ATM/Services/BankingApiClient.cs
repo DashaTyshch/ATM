@@ -76,5 +76,13 @@ namespace ATM.Services
         {
             SessionId = null;
         }
+
+        // must call CurrentUser after doing it to refresh data
+        public bool OpenAccount(string phNum)
+        {
+            var resp = Client.PostAsJsonAsync("api/auth/createacc", new UserGetDto { PhoneNumber = phNum }).Result;
+            return resp.IsSuccessStatusCode;
+        }
+
     }
 }

@@ -93,7 +93,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="DataModels\Account.cs" />
     <Compile Include="DataModels\CreateMobileTransferDto.cs" />
     <Compile Include="DataModels\Credentials.cs" />

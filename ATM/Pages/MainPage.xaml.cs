@@ -74,5 +74,26 @@ namespace ATM.Pages
             LoginPage LogP = new LoginPage();
             this.NavigationService.Navigate(LogP);
         }
+
+        private void Button_Click_Add_Card(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Ви дійсно бажаєте додати нову картку?",
+                                          "Підтвердження",
+                                          MessageBoxButton.YesNo,
+                                          MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                if (BankingApiClient.GetInstance().OpenAccount(currUser.PhoneNumber))
+                {
+                    MainPage MP = new MainPage();
+                    this.NavigationService.Navigate(MP);
+                } else
+                {
+                    MessageBox.Show("Відбулася якась помилка.\nСпробуйте ще раз.", "Помилка");
+                }
+                
+            }
+            
+        }
     }
 }

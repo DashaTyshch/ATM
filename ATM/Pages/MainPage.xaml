@@ -48,6 +48,10 @@
                             <StackPanel>
                                 <TextBlock Name="GreetingText" FontSize="17" Foreground="CadetBlue"
                                    Padding="7 5 7 5" Margin="0 0 0 15"/>
+                                <Button Content="Додати картку" Foreground="Snow" FontSize="20"
+                                        Background="LightSlateGray"
+                                        Style="{StaticResource BtnStyle }"
+                                        Click="Button_Click_Add_Card"/>
                                 <Button Content="Налаштування" Foreground="Snow" FontSize="20"
                                         Background="LightSlateGray" Margin="0 6"
                                         Style="{StaticResource BtnStyle }"/>
