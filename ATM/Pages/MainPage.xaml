@@ -52,9 +52,10 @@
                                         Background="LightSlateGray"
                                         Style="{StaticResource BtnStyle }"
                                         Click="Button_Click_Add_Card"/>
-                                <Button Content="Налаштування" Foreground="Snow" FontSize="20"
+                                <Button Content="Мій акаунт" Foreground="Snow" FontSize="20"
                                         Background="LightSlateGray" Margin="0 6"
-                                        Style="{StaticResource BtnStyle }"/>
+                                        Style="{StaticResource BtnStyle }"
+                                        Click="MyAccountButton_Click"/>
                                 <Button Content="Вийти" Foreground="Snow" FontSize="20" Click="Button_Click_Exit"
                                         Background="LightSlateGray"
                                         Style="{StaticResource BtnStyle }" />

@@ -68,3 +68,5 @@ D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\ro\Xceed.Wpf.AvalonDock.resou
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\AccountPage.g.cs
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\Pages\AccountPage.baml

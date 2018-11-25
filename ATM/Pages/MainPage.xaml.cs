@@ -101,5 +101,11 @@ namespace ATM.Pages
             }
             
         }
+
+        private void MyAccountButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService navService = NavigationService.GetNavigationService(this);
+            navService.Navigate(new System.Uri("Pages/AccountPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
