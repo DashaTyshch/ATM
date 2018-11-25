@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Debug\
+D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\obj\Release\
 ATM
 none
 false
-DEBUG;TRACE
+TRACE
 D:\CURRENT_SEMESTER\МООП\ATM\ATM\ATM\App.xaml
 7-1323565038
 
-30-364295163
+26156582458
 75-1843996636
 MainWindow.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\MobileTransferPage.xaml;Pages\SignUp.xaml;Pages\TransferPage.xaml;Styles\Button.xaml;
 
