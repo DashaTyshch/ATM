@@ -24,6 +24,8 @@ namespace ATM.Pages
     {
         private UserGetDto currUser = BankingApiClient.GetInstance().CurrentUser();
         private string card;
+        private DateTime fromD;
+        private DateTime toD;
 
         public History(string card)
         {
@@ -32,11 +34,12 @@ namespace ATM.Pages
 
             //currUser = BankingApiClient.GetInstance().CurrentUser();
             CardNum.Text = card;
+            fromD = DateTime.Now.AddDays(-1);
+            toD = DateTime.Now.Date;
+            datePickerFrom.SelectedDate = fromD;
+            datePickerTo.SelectedDate = toD;
 
-            datePickerFrom.SelectedDate = DateTime.Now.AddDays(-1);
-            datePickerTo.SelectedDate = DateTime.Now.Date;
-
-            Show_History(card, datePickerFrom.DisplayDate, datePickerTo.DisplayDate);
+            Show_History(card);
         }
         public History(string card, DateTime from, DateTime to)
         {
@@ -44,12 +47,15 @@ namespace ATM.Pages
             this.card = card;
 
             CardNum.Text = card;
+            fromD = from;
+            toD = to;
+
             datePickerFrom.SelectedDate = from;
             datePickerTo.SelectedDate = to;
             datePickerTo.DisplayDate = to;
             datePickerFrom.DisplayDate = from;
 
-            Show_History(card, from, to);
+            Show_History(card);
         }
 
         private void Back_To_Main_Click(object sender, RoutedEventArgs e)
@@ -58,9 +64,9 @@ namespace ATM.Pages
             this.NavigationService.Navigate(MP);
         }
 
-        private void Show_History(string id, DateTime from, DateTime to)
+        private void Show_History(string id)
         {
-            var his = BankingApiClient.GetInstance().History(id, from, to);
+            var his = BankingApiClient.GetInstance().History(id, fromD, toD);
             if (his.Length == 0)
             {
                 TextBlock text = new TextBlock
@@ -137,8 +143,17 @@ namespace ATM.Pages
 
         private void Show_Click(object sender, RoutedEventArgs e)
         {
-            History history = new History(card, datePickerFrom.SelectedDate.Value, datePickerTo.SelectedDate.Value);
-            this.NavigationService.Navigate(history);
+            if (datePickerFrom.SelectedDate.Value > datePickerTo.SelectedDate.Value)
+            {
+                datePickerFrom.SelectedDate = fromD;
+                datePickerTo.SelectedDate = toD;
+                datePickerTo.DisplayDate = toD;
+                datePickerFrom.DisplayDate = fromD;
+                MessageBox.Show("Некоректно вибрані дати.", "Помилка");
+            } else {
+                History history = new History(card, datePickerFrom.SelectedDate.Value, datePickerTo.SelectedDate.Value);
+                this.NavigationService.Navigate(history);
+            }
         }
     }
 }
