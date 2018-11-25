@@ -25,7 +25,7 @@ namespace ATM.Pages
     /// </summary>
     public partial class TransferPage : Page
     {
-        Regex cardValid = new Regex(@"^[0-9]{16}$");
+        Regex cardValid = new Regex(@"^[0-9]{15}$");
         private UserGetDto currUser;
 
         public TransferPage()
