@@ -29,19 +29,25 @@
                     <Border Background="Snow" CornerRadius="10"
                             Padding="15" Margin="0 0 0 0">
                         <StackPanel>
-                            <TextBlock Text="Transfer" FontSize="40" Foreground="CadetBlue"/>
-                            <!-- Card -->
-                            <Label Content="Choose card" FontSize="14" Foreground="Gray"/>
-                            <ComboBox Name="CardComboBox" Tag="CardComboBox"/>
-                            <!-- Card number -->
-                            <Label Content="Enter card number" FontSize="14" Foreground="Gray"/>
-                            <TextBox Name="CardTextBox" Tag="Card"/>
-                            <!--Amount -->
-                            <Label Content="Amount" FontSize="14" Foreground="Gray"/>
-                            <TextBox Name="AmountTextBox" Tag="Amount"/>
+                            <TextBlock Text="Переказ на картку" FontSize="37" Foreground="CadetBlue"/>
+                            <TextBlock Text="Комісія становить 1 грн." FontSize="14" Foreground="LightSlateGray"/>
+                            <StackPanel Margin="27 0">
+                                <!-- Card -->
+                                <Label Content="Виберіть карту:" FontSize="17" Foreground="Gray"/>
+                                <ComboBox Name="CardComboBox" Tag="CardComboBox" FontSize="16"/>
+                                <!-- Card number -->
+                                <Label Content="Введіть номер картки:" FontSize="17" Foreground="Gray"/>
+                                <TextBox Name="CardTextBox" Tag="Card" FontSize="16"/>
+                                <!--Amount -->
+                                <Label Content="Сума:" FontSize="17" Foreground="Gray"/>
+                                <TextBox Name="AmountTextBox" Tag="Amount" Text="100" FontSize="16"/>
+                            </StackPanel>
+                           
 
-                            <Button Content="Send" HorizontalAlignment="Center"
-                                    FontSize="24" Margin="0 15 0 0" Padding="10" Click="SendTransferButton_Click"/>
+                            <Button Content="Відправити" HorizontalAlignment="Center"
+                                    Background="CadetBlue" Foreground="Snow" BorderThickness="0"
+                                    FontSize="24" Margin="0 15 0 0" Padding="7 3"
+                                    Click="SendTransferButton_Click"/>
                         </StackPanel>
 
                     </Border>

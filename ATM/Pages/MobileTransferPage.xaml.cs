@@ -91,8 +91,8 @@ namespace ATM.Pages
                     msg.Caption = "Завершено";
                     msg.Text = "Операція пройшла успішно!";
                     msg.ShowDialog();
-                    AmountTextBox.Text = "+380";
-                    PhoneTextBox.Text = "100";
+                    AmountTextBox.Text = "100";
+                    PhoneTextBox.Text = "+380";
                 }
                 else
                 {
