@@ -26,6 +26,7 @@ namespace ATM.Pages
     public partial class MobileTransferPage : Page
     {
         Regex phoneValid = new Regex(@"^\+380([0-9]){9}$");
+        Regex currencyValid = new Regex(@"^[0-9]+(,[0-9]{1,2})?$");
         private UserGetDto currUser;
         public MobileTransferPage()
         {
@@ -45,60 +46,77 @@ namespace ATM.Pages
 
         private void SendMobileTramsferButton_Click(object sender, RoutedEventArgs e)
         {
-            var mobTransfer = new CreateMobileTransferDto
+            var mobTransfer = new CreateMobileTransferDto();
+            var amount = AmountTextBox.Text.Replace('.', ',');
+
+            if (currencyValid.IsMatch(amount))
             {
-                Amount = double.Parse(AmountTextBox.Text) + 1,
-                FromId = CardComboBox.Text,
-                PhNum = PhoneTextBox.Text
-            };
 
-            if (mobTransfer.Amount > currUser.Accounts.Where(a=>a.AccountNumber==mobTransfer.FromId).First().Balance)
-            {
-                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
-                {
-                    WindowBackground = Brushes.Snow
-                };
-                msg.Caption = "Помилка";
-                msg.Text = "На рахунку недостатньо коштів!";
-                msg.ShowDialog();
+                mobTransfer.Amount = double.Parse(amount) + 1;
+                mobTransfer.FromId = CardComboBox.Text;
+                mobTransfer.PhNum = PhoneTextBox.Text;
 
-            } else if (!phoneValid.IsMatch(mobTransfer.PhNum))
-            {
-                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
-                {
-                    WindowBackground = Brushes.Snow
-                };
-                msg.Caption = "Помилка";
-                msg.Text = "Неправильний формат телефону.\nПеревірте і спробуйте ще раз.";
-                msg.ShowDialog();
-            } else
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
-
-                // Add an Accept header for JSON format.
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.PostAsJsonAsync("api/transfers/performmobile", mobTransfer).Result;
-
-                if (response.IsSuccessStatusCode)
+                if (mobTransfer.Amount > currUser.Accounts.Where(a => a.AccountNumber == mobTransfer.FromId).First().Balance)
                 {
                     Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
                     {
                         WindowBackground = Brushes.Snow
                     };
-                    msg.Caption = "Завершено";
-                    msg.Text = "Операція пройшла успішно!";
+                    msg.Caption = "Помилка";
+                    msg.Text = "На рахунку недостатньо коштів!";
                     msg.ShowDialog();
-                    AmountTextBox.Text = "100";
-                    PhoneTextBox.Text = "+380";
+
+                }
+                else if (!phoneValid.IsMatch(mobTransfer.PhNum))
+                {
+                    Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                    {
+                        WindowBackground = Brushes.Snow
+                    };
+                    msg.Caption = "Помилка";
+                    msg.Text = "Неправильний формат телефону.\nПеревірте і спробуйте ще раз.";
+                    msg.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
+
+                    // Add an Accept header for JSON format.
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var response = client.PostAsJsonAsync("api/transfers/performmobile", mobTransfer).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                        {
+                            WindowBackground = Brushes.Snow
+                        };
+                        msg.Caption = "Завершено";
+                        msg.Text = "Операція пройшла успішно!";
+                        msg.ShowDialog();
+                        AmountTextBox.Text = "100";
+                        PhoneTextBox.Text = "+380";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                    }
                 }
             }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                {
+                    WindowBackground = Brushes.Snow
+                };
+                msg.Caption = "Помилка";
+                msg.Text = "Неправильний формат суми!";
+                msg.ShowDialog();
+            }
+                
         }
 
         private void Back_To_Main_Click(object sender, RoutedEventArgs e)

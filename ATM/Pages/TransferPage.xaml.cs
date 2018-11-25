@@ -2,6 +2,7 @@
 using ATM.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -15,7 +16,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ATM.Pages
@@ -26,6 +26,7 @@ namespace ATM.Pages
     public partial class TransferPage : Page
     {
         Regex cardValid = new Regex(@"^[0-9]{15}$");
+        Regex currencyValid = new Regex(@"^[0-9]+(,[0-9]{1,2})?$");
         private UserGetDto currUser;
 
         public TransferPage()
@@ -47,65 +48,78 @@ namespace ATM.Pages
        
         private void SendTransferButton_Click(object sender, RoutedEventArgs e)
         {
+            var cardTransfer = new TransferCreateDto();
+            var amount = AmountTextBox.Text.Replace('.', ',');
 
-            var cardTransfer = new TransferCreateDto
+            if (currencyValid.IsMatch(amount))
             {
-                Amount = double.Parse(AmountTextBox.Text) + 1, // Check for valid number
-                FromId = CardComboBox.Text, // convert selected item value to string
-                ToId = CardTextBox.Text
-            };
+                
+                cardTransfer.Amount = double.Parse(amount);
+                cardTransfer.FromId = CardComboBox.Text;
+                cardTransfer.ToId = CardTextBox.Text;
 
-            if (cardTransfer.Amount > currUser.Accounts.Where(a => a.AccountNumber == cardTransfer.FromId).First().Balance)
-            {
-                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
-                {
-                    WindowBackground = Brushes.Snow
-                };
-                msg.Caption = "Помилка";
-                msg.Text = "На рахунку недостатньо коштів!";
-                msg.ShowDialog();
-
-            }
-            else if (!cardValid.IsMatch(cardTransfer.ToId))
-            {
-                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
-                {
-                    WindowBackground = Brushes.Snow
-                };
-                msg.Caption = "Помилка";
-                msg.Text = "Неправильний формат картки.\nПеревірте і спробуйте ще раз.";
-                msg.ShowDialog();
-            }
-            else
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
-
-                // Add an Accept header for JSON format.
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-
-
-                var response = client.PostAsJsonAsync("api/transfers/perform", cardTransfer).Result;
-
-                if (response.IsSuccessStatusCode)
+                if (cardTransfer.Amount > currUser.Accounts.Where(a => a.AccountNumber == cardTransfer.FromId).First().Balance)
                 {
                     Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
                     {
                         WindowBackground = Brushes.Snow
                     };
-                    msg.Caption = "Завершено";
-                    msg.Text = "Операція пройшла успішно!";
+                    msg.Caption = "Помилка";
+                    msg.Text = "На рахунку недостатньо коштів!";
                     msg.ShowDialog();
 
-                    
-                    AmountTextBox.Text = "100";
-                    CardTextBox.Text = "";
+                }
+                else if (!cardValid.IsMatch(cardTransfer.ToId))
+                {
+                    Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                    {
+                        WindowBackground = Brushes.Snow
+                    };
+                    msg.Caption = "Помилка";
+                    msg.Text = "Неправильний формат картки.\nПеревірте і спробуйте ще раз.";
+                    msg.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
+
+                    // Add an Accept header for JSON format.
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new MediaTypeWithQualityHeaderValue("application/json"));
+
+
+                    var response = client.PostAsJsonAsync("api/transfers/perform", cardTransfer).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                        {
+                            WindowBackground = Brushes.Snow
+                        };
+                        msg.Caption = "Завершено";
+                        msg.Text = "Операція пройшла успішно!";
+                        msg.ShowDialog();
+
+
+                        AmountTextBox.Text = "100";
+                        CardTextBox.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                    }
                 }
+            }
+            else
+            {
+                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                {
+                    WindowBackground = Brushes.Snow
+                };
+                msg.Caption = "Помилка";
+                msg.Text = "Неправильний формат суми!";
+                msg.ShowDialog();
             }
         }
 

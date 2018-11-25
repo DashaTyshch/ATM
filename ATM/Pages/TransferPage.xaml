@@ -30,7 +30,7 @@
                             Padding="15" Margin="0 0 0 0">
                         <StackPanel>
                             <TextBlock Text="Переказ на картку" FontSize="37" Foreground="CadetBlue"/>
-                            <TextBlock Text="Комісія становить 1 грн." FontSize="14" Foreground="LightSlateGray"/>
+                            <TextBlock Text="Комісія становить 1%." FontSize="14" Foreground="LightSlateGray"/>
                             <StackPanel Margin="27 0">
                                 <!-- Card -->
                                 <Label Content="Виберіть карту:" FontSize="17" Foreground="Gray"/>
