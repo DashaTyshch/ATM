@@ -22,20 +22,34 @@ namespace ATM.Pages
     /// </summary>
     public partial class History : Page
     {
-        private UserGetDto currUser;
+        private UserGetDto currUser = BankingApiClient.GetInstance().CurrentUser();
         private string card;
+
         public History(string card)
         {
             InitializeComponent();
             this.card = card;
 
-            currUser = BankingApiClient.GetInstance().CurrentUser();
+            //currUser = BankingApiClient.GetInstance().CurrentUser();
             CardNum.Text = card;
 
             datePickerFrom.SelectedDate = DateTime.Now.AddDays(-1);
             datePickerTo.SelectedDate = DateTime.Now.Date;
 
             Show_History(card, datePickerFrom.DisplayDate, datePickerTo.DisplayDate);
+        }
+        public History(string card, DateTime from, DateTime to)
+        {
+            InitializeComponent();
+            this.card = card;
+
+            CardNum.Text = card;
+            datePickerFrom.SelectedDate = from;
+            datePickerTo.SelectedDate = to;
+            datePickerTo.DisplayDate = to;
+            datePickerFrom.DisplayDate = from;
+
+            Show_History(card, from, to);
         }
 
         private void Back_To_Main_Click(object sender, RoutedEventArgs e)
@@ -47,6 +61,18 @@ namespace ATM.Pages
         private void Show_History(string id, DateTime from, DateTime to)
         {
             var his = BankingApiClient.GetInstance().History(id, from, to);
+            if (his.Length == 0)
+            {
+                TextBlock text = new TextBlock
+                {
+                    FontSize = 18,
+                    Width = 340,
+                    TextWrapping = TextWrapping.Wrap,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Text = "На задані дати транзакцій не було."
+                };
+                InfoPanel.Children.Add(text);
+            }
             foreach (var h in his)
             {
                 Border border = new Border
@@ -111,8 +137,8 @@ namespace ATM.Pages
 
         private void Show_Click(object sender, RoutedEventArgs e)
         {
-            InfoPanel.Children.Clear();
-            Show_History(card, datePickerFrom.DisplayDate, datePickerTo.DisplayDate);
+            History history = new History(card, datePickerFrom.SelectedDate.Value, datePickerTo.SelectedDate.Value);
+            this.NavigationService.Navigate(history);
         }
     }
 }
