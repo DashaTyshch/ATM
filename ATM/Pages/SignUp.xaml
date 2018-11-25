@@ -27,7 +27,7 @@
                             <TextBox Name="SurnameTextBox" Tag="Surname"/>
                             <!-- Login -->
                             <Label Content="Номер телефону" FontSize="14" Foreground="Gray"/>
-                            <TextBox Name="LoginTextBox" Tag="Login"/>
+                            <TextBox Name="LoginTextBox" Tag="Login" Text="+380" MaxLength="13"/>
                             <!-- Password -->
                             <Label Content="Пароль" FontSize="14" Foreground="Gray"/>
                             <PasswordBox Name="PasswordTextBox" Tag="Password" Margin="0 0 0 20"/>

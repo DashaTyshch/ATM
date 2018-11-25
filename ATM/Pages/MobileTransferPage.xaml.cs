@@ -1,10 +1,12 @@
 ﻿using ATM.DataModels;
+using ATM.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,43 +25,86 @@ namespace ATM.Pages
     /// </summary>
     public partial class MobileTransferPage : Page
     {
+        Regex phoneValid = new Regex(@"^\+380([0-9]){9}$");
+        private UserGetDto currUser;
         public MobileTransferPage()
         {
             InitializeComponent();
+
+            currUser = BankingApiClient.GetInstance().CurrentUser();
+            var cards = currUser.Accounts;
+            for (var i = 0; i < cards.Length; i++)
+            {
+                ComboBoxItem boxItem = new ComboBoxItem();
+                boxItem.Content = cards[i].AccountNumber;
+                if (i == 0)
+                    boxItem.IsSelected = true;
+                CardComboBox.Items.Add(boxItem);
+            }
         }
 
         private void SendMobileTramsferButton_Click(object sender, RoutedEventArgs e)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
             var mobTransfer = new CreateMobileTransferDto
             {
-                Amount = double.Parse(AmountTextBox.Text), // Check for valid number
-                FromId = CardComboBox.SelectedValue.ToString(), // convert selected item value to string
+                Amount = double.Parse(AmountTextBox.Text) + 1,
+                FromId = CardComboBox.Text,
                 PhNum = PhoneTextBox.Text
             };
 
-            var response = client.PostAsJsonAsync("api/transfers/performmobile", mobTransfer).Result;
-
-            if (response.IsSuccessStatusCode)
+            if (mobTransfer.Amount > currUser.Accounts.Where(a=>a.AccountNumber==mobTransfer.FromId).First().Balance)
             {
-                MessageBox.Show("Mobile transfer is done");
-                AmountTextBox.Text = "";
-                //FromId = ;
-                PhoneTextBox.Text = "";
+                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                {
+                    WindowBackground = Brushes.Snow
+                };
+                msg.Caption = "Помилка";
+                msg.Text = "На рахунку недостатньо коштів!";
+                msg.ShowDialog();
 
-                // TODO:: and where futher?
-                // To previous page
-            }
-            else
+            } else if (!phoneValid.IsMatch(mobTransfer.PhNum))
             {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                {
+                    WindowBackground = Brushes.Snow
+                };
+                msg.Caption = "Помилка";
+                msg.Text = "Неправильний формат телефону.\nПеревірте і спробуйте ще раз.";
+                msg.ShowDialog();
+            } else
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://tktbanking.azurewebsites.net/");
+
+                // Add an Accept header for JSON format.
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = client.PostAsJsonAsync("api/transfers/performmobile", mobTransfer).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+                    {
+                        WindowBackground = Brushes.Snow
+                    };
+                    msg.Caption = "Завершено";
+                    msg.Text = "Операція пройшла успішно!";
+                    msg.ShowDialog();
+                    AmountTextBox.Text = "+380";
+                    PhoneTextBox.Text = "100";
+                }
+                else
+                {
+                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                }
             }
+        }
+
+        private void Back_To_Main_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage MP = new MainPage();
+            this.NavigationService.Navigate(MP);
         }
     }
 }

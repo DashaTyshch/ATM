@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ATM.Pages"
+      xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TransferPage">
@@ -14,6 +15,17 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
                             TextBlock.TextAlignment="Center" Width="350">
+                    <wpfTool:IconButton Content="На головну сторінку" Padding="2"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Foreground="Snow" Background="DimGray"
+                                        IconLocation="Left" BorderThickness="0" Focusable="False"
+                                        Margin="0 0 0 15" FontSize="16"
+                                        Click="Back_To_Main_Click">
+                        <wpfTool:IconButton.Icon>
+                            <Image Source="../Images/Icon_back.png"
+                                   Width="20" Margin="0,0,5,0"/>
+                        </wpfTool:IconButton.Icon>
+                    </wpfTool:IconButton>
                     <Border Background="Snow" CornerRadius="10"
                             Padding="15" Margin="0 0 0 0">
                         <StackPanel>

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ATM.DataModels;
 using ATM.Services;
+using System.Text.RegularExpressions;
 
 namespace ATM.Pages
 {
@@ -24,6 +25,8 @@ namespace ATM.Pages
     /// </summary>
     public partial class SignUp : Page
     {
+        Regex phoneValid = new Regex(@"^\+380([0-9]){9}$");
+
         public SignUp()
         {
             InitializeComponent();
@@ -31,26 +34,35 @@ namespace ATM.Pages
 
         private void ButtonSignUp_Click(object sender, RoutedEventArgs e)
         {
-            if (NameTextBox.Text == "" || SurnameTextBox.Text == "" 
-                || LoginTextBox.Text == "" || PasswordTextBox.Password == "")
+            var userInfo = new UserUpdDto
+            {
+                Name = NameTextBox.Text,
+                Surname = SurnameTextBox.Text,
+                PhoneNumber = LoginTextBox.Text,
+                Password = PasswordTextBox.Password
+            };
+
+            if (userInfo.Name == "" || userInfo.Surname == "" 
+                || userInfo.PhoneNumber == "" || userInfo.Password == "")
             {
                 MessageBox.Show("Заповніть всі поля!", "Помилка реєстрації");
             }
+            else if (!phoneValid.IsMatch(userInfo.PhoneNumber))
+            {
+                MessageBox.Show("Неправильний формат телефону.\nПеревірте і спробуйте ще раз.", "Помилка реєстрації");
+            }
+            else if (userInfo.Password.Length < 8 )
+            {
+                PasswordTextBox.Password = "";
+                MessageBox.Show("Пароль має складатися з 8 чи більше символів!", "Помилка реєстрації");
+            }
             else
             {
-                var userInfo = new UserUpdDto
-                {
-                    Name = NameTextBox.Text,
-                    Surname = SurnameTextBox.Text,
-                    PhoneNumber = LoginTextBox.Text,
-                    Password = PasswordTextBox.Password
-                };
-
                 if (BankingApiClient.GetInstance().Register(userInfo.Name, userInfo.Surname, userInfo.PhoneNumber, userInfo.Password))
                 {
                     NameTextBox.Text = "";
                     SurnameTextBox.Text = "";
-                    LoginTextBox.Text = "";
+                    LoginTextBox.Text = "+380";
                     PasswordTextBox.Password = "";
 
                     // To next page

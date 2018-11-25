@@ -22,7 +22,6 @@ namespace ATM
 
             LoginPage LogP = new LoginPage();
             MainFrame.NavigationService.Navigate(LogP);
-            //this.DataContext = new WindowViewModel(this);
         }
     }
 }
