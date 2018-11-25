@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ATM.Pages"
+      xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MobileTransferPage">
@@ -14,22 +15,37 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
                             TextBlock.TextAlignment="Center">
+                    <wpfTool:IconButton Content="На головну сторінку" Padding="2"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Foreground="Snow" Background="DimGray"
+                                        IconLocation="Left" BorderThickness="0" Focusable="False"
+                                        Margin="0 0 0 15" FontSize="16"
+                                         Click="Back_To_Main_Click">
+                        <wpfTool:IconButton.Icon>
+                            <Image Source="../Images/Icon_back.png"
+                                   Width="20" Margin="0,0,5,0"/>
+                        </wpfTool:IconButton.Icon>
+                    </wpfTool:IconButton>
+                    
                     <Border Background="Snow" CornerRadius="10"
                             Padding="15" Margin="0 0 0 0">
                         <StackPanel>
-                            <TextBlock Text="Mobile transfer" FontSize="40" Foreground="CadetBlue"/>
-                            <!-- Card -->
-                            <Label Content="Choose card" FontSize="14" Foreground="Gray"/>
-                            <ComboBox Name="CardComboBox" Tag="CardComboBox"/>
-                            <!-- Pnone number -->
-                            <Label Content="Enter phone number" FontSize="14" Foreground="Gray"/>
-                            <TextBox Name="PhoneTextBox" Tag="Phone"/>
-                            <!--Amount -->
-                            <Label Content="Amount" FontSize="14" Foreground="Gray"/>
-                            <TextBox Name="AmountTextBox" Tag="Amount"/>
-                          
-                            <Button Content="Send" HorizontalAlignment="Center"
-                                    FontSize="24" Margin="0 15 0 0" Padding="10" Click="SendMobileTramsferButton_Click"/>
+                            <TextBlock Text="Поповнення мобільного" FontSize="37" Foreground="CadetBlue"/>
+                            <TextBlock Text="Комісія становить 1 грн." FontSize="14" Foreground="LightSlateGray"/>
+                            <StackPanel Margin="27 0">
+                                <!-- Card -->
+                                <Label Content="Виберіть карту:" FontSize="17" Foreground="Gray"/>
+                                <ComboBox Name="CardComboBox" Tag="CardComboBox" FontSize="16"/>
+                                <!-- Pnone number -->
+                                <Label Content="Введіть номер телефону:" FontSize="17" Foreground="Gray"/>
+                                <TextBox Name="PhoneTextBox" Tag="Phone" Text="+380" FontSize="16"/>
+                                <!--Amount -->
+                                <Label Content="Сума:" FontSize="17" Foreground="Gray"/>
+                                <TextBox Name="AmountTextBox" Tag="Amount" Text="100" FontSize="16"/>
+                            </StackPanel>
+                            <Button Content="Відправити" HorizontalAlignment="Center"
+                                    Background="CadetBlue" Foreground="Snow" BorderThickness="0"
+                                    FontSize="24" Margin="0 15 0 0" Padding="7 3" Click="SendMobileTramsferButton_Click"/>
                         </StackPanel>
 
                     </Border>

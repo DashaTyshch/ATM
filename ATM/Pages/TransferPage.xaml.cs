@@ -61,5 +61,11 @@ namespace ATM.Pages
                 MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
             }
         }
+
+        private void Back_To_Main_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage MP = new MainPage();
+            this.NavigationService.Navigate(MP);
+        }
     }
 }
