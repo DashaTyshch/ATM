@@ -47,7 +47,9 @@ namespace ATM.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
-            MessageBox.Show(b.Tag as string);
+            History his = new History(b.Tag as string);
+            this.NavigationService.Navigate(his);
+            //MessageBox.Show(b.Tag as string);
         }
 
         private void MobileTransferButton_Click(object sender, RoutedEventArgs e)

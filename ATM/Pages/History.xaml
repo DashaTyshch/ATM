@@ -1,0 +1,53 @@
+﻿<Page x:Class="ATM.Pages.History"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ATM.Pages"
+      xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="History">
+
+    <Border Background="DimGray">
+        <Grid>
+            <!-- Content Scroll -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                            TextBlock.TextAlignment="Center">
+                    <wpfTool:IconButton Content="На головну сторінку" Padding="2"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Foreground="Snow" Background="DimGray"
+                                        IconLocation="Left" BorderThickness="0" Focusable="False"
+                                        Margin="0 0 0 15" FontSize="16"
+                                         Click="Back_To_Main_Click">
+                        <wpfTool:IconButton.Icon>
+                            <Image Source="../Images/Icon_back.png"
+                                   Width="20" Margin="0,0,5,0"/>
+                        </wpfTool:IconButton.Icon>
+                    </wpfTool:IconButton>
+
+                    <Border Background="Snow" CornerRadius="10"
+                            Padding="15" Margin="0 0 0 0">
+                        <StackPanel>
+                            <TextBlock Text="Історія транзакцій" FontSize="37" Foreground="CadetBlue"/>
+                            <TextBlock Name="CardNum" FontSize="14" Foreground="LightSlateGray"/>
+                            <StackPanel Margin="27 0" TextBlock.TextAlignment="Left">
+                                <StackPanel >
+                                    <TextBlock Width="340" FontSize="18" TextWrapping="Wrap" Text="Переказ на карту. Отримувач: блабла."/>
+                                    <TextBlock Width="340" FontSize="16" TextWrapping="Wrap" Text="Коментар: блаблан"/>
+                                    <TextBlock HorizontalAlignment="Right"
+                                               Foreground="LightSlateGray"
+                                               Text="12.03.2017 17:34"/>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                        </StackPanel>
+
+                    </Border>
+                </StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Page>
