@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ATM.Pages"
       xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
+      xmlns:PropertyGrid="clr-namespace:Deepforest.WPF.Controls"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="History">
 
@@ -26,20 +27,19 @@
                                    Width="20" Margin="0,0,5,0"/>
                         </wpfTool:IconButton.Icon>
                     </wpfTool:IconButton>
-
+                    
                     <Border Background="Snow" CornerRadius="10"
                             Padding="15" Margin="0 0 0 0">
                         <StackPanel>
                             <TextBlock Text="Історія транзакцій" FontSize="37" Foreground="CadetBlue"/>
                             <TextBlock Name="CardNum" FontSize="14" Foreground="LightSlateGray"/>
-                            <StackPanel Margin="27 0" TextBlock.TextAlignment="Left">
-                                <StackPanel >
-                                    <TextBlock Width="340" FontSize="18" TextWrapping="Wrap" Text="Переказ на карту. Отримувач: блабла."/>
-                                    <TextBlock Width="340" FontSize="16" TextWrapping="Wrap" Text="Коментар: блаблан"/>
-                                    <TextBlock HorizontalAlignment="Right"
-                                               Foreground="LightSlateGray"
-                                               Text="12.03.2017 17:34"/>
-                                </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 7 0 0">
+                                <DatePicker Name="datePickerFrom" Width="120" Margin="0 0 60 0"/>
+                                <DatePicker Name="datePickerTo" Width="120" />
+                            </StackPanel>
+                            <Button Content="Показати" Width="86" FontSize="17" Margin="0 7 0 15" Click="Show_Click"/>
+                            <StackPanel Margin="27 0" TextBlock.TextAlignment="Left" Name="InfoPanel">
+                               
                             </StackPanel>
                             
                         </StackPanel>

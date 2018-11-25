@@ -118,6 +118,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataModels\Account.cs" />
+    <Compile Include="DataModels\AnyTransferDto.cs" />
     <Compile Include="DataModels\CreateMobileTransferDto.cs" />
     <Compile Include="DataModels\Credentials.cs" />
     <Compile Include="DataModels\TransferCreateDto.cs" />

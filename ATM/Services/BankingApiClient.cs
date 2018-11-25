@@ -84,5 +84,21 @@ namespace ATM.Services
             return resp.IsSuccessStatusCode;
         }
 
+        public AnyTransferDto[] History(string accId, DateTime from, DateTime to)
+        {
+            var path = $"/api/transfers/history?accnum={accId}&from={ToQueryArgument(from)}&to={ToQueryArgument(to.AddDays(1))}";
+            var resp = Client.GetAsync(path).Result;
+            if (!resp.IsSuccessStatusCode)
+                return null;
+            var res = resp.Content.ReadAsAsync<IEnumerable<AnyTransferDto>>().Result.ToArray();
+
+            return res;
+        }
+
+        private string ToQueryArgument(DateTime dateTime)
+        {
+            return $"{dateTime.Month}%2F{dateTime.Day}%2F{dateTime.Year}";
+        }
+
     }
 }
