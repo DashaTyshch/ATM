@@ -64,6 +64,13 @@ namespace ATM.Pages
         }
         private void CharityButton_Click(object sender, RoutedEventArgs e)
         {
+            Xceed.Wpf.Toolkit.MessageBox msg = new Xceed.Wpf.Toolkit.MessageBox
+            {
+                WindowBackground = Brushes.Snow
+            };
+            msg.Caption = "Благодійсність";
+            msg.Text = "Ви маєте добре серце, але дана функція наразі недоступна.";
+            msg.ShowDialog();
 
         }
 

@@ -87,9 +87,18 @@
 
                     <!--Cards functions-->
                     <StackPanel Grid.Row="2" Height="70" Orientation="Horizontal">
-                        <Button Content="Mobile Tansfer" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0" Click="MobileTransferButton_Click"/>
-                        <Button Content="Transfer" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0" Click="TransferButton_Click"/>
-                        <Button Content="Charity" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0" Click="CharityButton_Click"/>
+                        <Button Content="Поповнити мобільний" Width="Auto" FontSize="20" Padding="7 3" Margin="10 0 10 0"
+                                HorizontalAlignment="Center"
+                                Background="CadetBlue" Foreground="Snow" BorderThickness="0"
+                                Click="MobileTransferButton_Click"/>
+                        <Button Content="Переказати" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0" 
+                                HorizontalAlignment="Center"
+                                Background="CadetBlue" Foreground="Snow" BorderThickness="0"
+                                Click="TransferButton_Click"/>
+                        <Button Content="Благодійність" Width="Auto" FontSize="20" Padding="10" Margin="10 0 10 0" 
+                                HorizontalAlignment="Center"
+                                Background="CadetBlue" Foreground="Snow" BorderThickness="0"
+                                Click="CharityButton_Click"/>
                     </StackPanel>
 
                 </Grid>
