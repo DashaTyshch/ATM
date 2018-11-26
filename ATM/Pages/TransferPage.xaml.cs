@@ -107,7 +107,7 @@ namespace ATM.Pages
                     }
                     else
                     {
-                        MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                        MessageBox.Show("Введено недійсну картку.", "Помилка");
                     }
                 }
             }

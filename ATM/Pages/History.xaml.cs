@@ -32,7 +32,6 @@ namespace ATM.Pages
             InitializeComponent();
             this.card = card;
 
-            //currUser = BankingApiClient.GetInstance().CurrentUser();
             CardNum.Text = card;
             fromD = DateTime.Now.AddDays(-1);
             toD = DateTime.Now.Date;
@@ -123,7 +122,7 @@ namespace ATM.Pages
                     tx.Text = $"Зарахування на карту. Відправник: {h.PartnerInfo}";
                     currency.Foreground = Brushes.ForestGreen;
 
-                    fee.Text = $"Комісія - {h.Amount*0.01} грн.";
+                    fee.Text = $"Комісія - {String.Format("{0:0.00}", h.Amount * 0.01)} грн.";
                 } else if (h.Discriminator == "Mobile Replenishment")
                 {
                     tx.Text = $"Поповнення мобільного. Отримувач: {h.PartnerInfo}";

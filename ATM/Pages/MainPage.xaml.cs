@@ -35,7 +35,7 @@ namespace ATM.Pages
             foreach (var card in cards)
             {
                 Button butt = new Button();
-                butt.Content = $"# {card.AccountNumber}\nБаланс - {card.Balance} грн.";
+                butt.Content = $"# {card.AccountNumber}\nБаланс - {String.Format("{0:0.00}", card.Balance)} грн.";
                 butt.Name = "Button" + card.AccountNumber;
                 butt.FontSize = 19;
                 butt.Tag = card.AccountNumber;
@@ -49,12 +49,10 @@ namespace ATM.Pages
             Button b = (Button)sender;
             History his = new History(b.Tag as string);
             this.NavigationService.Navigate(his);
-            //MessageBox.Show(b.Tag as string);
         }
 
         private void MobileTransferButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO:: go to mobile transfer page
             NavigationService navService = NavigationService.GetNavigationService(this);
             navService.Navigate(new System.Uri("Pages/MobileTransferPage.xaml", UriKind.RelativeOrAbsolute));
 
@@ -108,6 +106,12 @@ namespace ATM.Pages
         {
             NavigationService navService = NavigationService.GetNavigationService(this);
             navService.Navigate(new System.Uri("Pages/AccountPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage MP = new MainPage();
+            this.NavigationService.Navigate(MP);
         }
     }
 }

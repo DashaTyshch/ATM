@@ -20,9 +20,11 @@
                             <TextBlock Text="Вхід" FontSize="40" Foreground="CadetBlue"/>
                             <TextBlock Text="Мобільний банкінг ТКТ" FontSize="20" Foreground="Gray" Margin="0 0 0 20"/>
                             <!-- Login -->
-                            <TextBox Name="LoginTextBox" Tag="Логін" Text="+380988122643"/>
+                            <Label Content="Номер телефону" FontSize="14" Foreground="Gray"/>
+                            <TextBox Name="LoginTextBox" Tag="Логін"/>
                             <!-- Password -->
-                            <PasswordBox Name="PasswordTextBox" Tag="Пароль" Margin="0 0 0 20" Password="dashaflasha"/>
+                            <Label Content="Пароль" FontSize="14" Foreground="Gray"/>
+                            <PasswordBox Name="PasswordTextBox" Tag="Пароль" Margin="0 0 0 20"/>
                             <Button Content="Ввійти" HorizontalAlignment="Center"
                                     FontSize="26" Click="ButtonLogin_Click"/>
                         </StackPanel>
